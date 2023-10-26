@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    const uri = process.env.REACT_APP_BACKEND_URI;
+
+    axios.post(`${uri}/predict`, {
+      "Animal": 3,
+      "Age": 2,
+      "Temperature": 103.6,
+      "Symptom 1": 11,
+      "Symptom 2": 12,
+      "Symptom 3": 10
+    }).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
